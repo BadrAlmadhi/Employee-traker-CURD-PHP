@@ -4,7 +4,7 @@ $username = 'root';
 $password = '';
 $database = 'employee_managementDB';
 
-$conn = new mysqli($server, $username, $password, $database);
+$conn = new mysqli($server, $username, $password);
 
 if ($conn->connect_errno) {
     die('Connection  failed: ' . $conn->connect_errno);
@@ -13,7 +13,7 @@ if ($conn->connect_errno) {
 }
 
 //drop database if exist
-$sql_drop_db = 'DROP DATABASE IF EXISTS employee_managementDB';
+$sql_drop_db = 'DROP DATABASE IF EXISTS ' . $database;
 if ($conn->query($sql_drop_db) === TRUE) {
     echo 'Database dropped successfully.<br>';
 } else {
@@ -21,7 +21,7 @@ if ($conn->query($sql_drop_db) === TRUE) {
 }
 
 // create database
-$sql_create_db = 'CREATE DATABASE employee_managementDB';
+$sql_create_db = 'CREATE DATABASE ' . $database;
 if ($conn->query($sql_create_db) === TRUE) {
     echo 'Database created successful.<br>';
 } else {
@@ -30,6 +30,10 @@ if ($conn->query($sql_create_db) === TRUE) {
 
 //select data to create table
 $conn->select_db($database);
+
+if ($conn->select_db($database) === FALSE) {
+    die('Error selecting database: ' . $conn->error . '<br>');
+}
 
 // create table "tasks"
 $sql_table = 'CREATE TABLE employees (
@@ -45,4 +49,5 @@ if ($conn->query($sql_table) === TRUE) {
     echo 'Error creating table: ' . $conn->error . '<br>';
 }
 
+$conn->close();
 ?>
