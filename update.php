@@ -1,18 +1,19 @@
 <?php
 // sending data to MySQL
 include './config/connection.php';
+$id=$_GET['updateid'];
 if (isset($_POST['submit'])) {
     $name = $_POST['name'];
     $email = $_POST['email'];
     $mobile = $_POST['mobile'];
     $password = $_POST['password'];
 
-    $spl = "INSERT INTO employees (name, email, mobile, password) VALUES ('$name', '$email', '$mobile', '$password')";
+    $spl = "UPDATE employees SET id=$id, name='$name', email='$email', mobile='$mobile', password='$password' where id=$id";
     $result = mysqli_query($conn, $spl);
     if ($result) {
-        // echo 'Data inserted successfully';
+        echo 'Updated successfully';
         // add header to relocate page to main
-        header('location:index.php');
+        // header('location:index.php');
     } else {
         die(mysqli_errno($conn));
     }
@@ -49,7 +50,7 @@ if (isset($_POST['submit'])) {
                 <input type="password" class="form-control" autocomplete="off" placeholder="Enter your password" name="password">
             </div>
 
-            <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" name="submit" class="btn btn-primary">Update</button>
         </form>
     </div>
 </body>
