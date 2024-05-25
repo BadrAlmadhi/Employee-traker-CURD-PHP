@@ -38,9 +38,10 @@ if ($conn->select_db($database) === FALSE) {
 // create table "tasks"
 $sql_table = 'CREATE TABLE employees (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    employeeName VARCHAR(30) NOT NULL,
+    name VARCHAR(30) NOT NULL,
     email VARCHAR(30),
-    salary DECIMAL
+    mobile VARCHAR(30),
+    password VARCHAR(30) NOT NULL
 )';
 
 if ($conn->query($sql_table) === TRUE) {
