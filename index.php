@@ -35,11 +35,13 @@ include './config/connection.php';
                 if ($result) {
                     // loop over database row by selecting names in table
                     while ($row = mysqli_fetch_assoc($result)) {
+                        // select row from database by name
                         $id = $row['id'];
                         $name = $row['name'];
                         $email = $row['email'];
                         $mobile = $row['mobile'];
                         $password = $row['password'];
+                        // print added values to table
                         echo '<tr>
                         <th scope="row">' . $id . '</th>
                         <td>' . $name . '</td>

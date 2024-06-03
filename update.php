@@ -1,10 +1,12 @@
 <?php
 // sending data to MySQL
 include './config/connection.php';
+// get data 
 $id=$_GET['updateid'];
+// select from id
 $sql = "SELECT * FROM employees WHERE id=$id";
 $result = mysqli_query($conn, $sql);
-// access data in database to display in update 
+// access data in database to display in update then add in HTML element
 $row=mysqli_fetch_assoc($result);
 $name=$row['name'];
 $email=$row['email'];

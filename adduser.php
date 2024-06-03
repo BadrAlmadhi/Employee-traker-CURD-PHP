@@ -1,12 +1,14 @@
 <?php
 // sending data to MySQL
 include './config/connection.php';
+// select all name"value"
 if (isset($_POST['submit'])) {
     $name = $_POST['name'];
     $email = $_POST['email'];
     $mobile = $_POST['mobile'];
     $password = $_POST['password'];
 
+    // insert data to table
     $spl = "INSERT INTO employees (name, email, mobile, password) VALUES ('$name', '$email', '$mobile', '$password')";
     $result = mysqli_query($conn, $spl);
     if ($result) {
